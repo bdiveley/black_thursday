@@ -4,6 +4,7 @@ require_relative '../lib/sales_engine'
 
 
 class SalesAnalystTest < Minitest::Test
+
   def test_it_can_calculate_average_items_per_merchant
     se = SalesEngine.from_csv(
       {
@@ -352,10 +353,10 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Item, instance_1[0]
     assert_equal 263_524_984, instance_1[0].id
 
-    instance_2 = sa.most_sold_item_for_merchant(12_334_189)
+    instance_2 = sa.most_sold_item_for_merchant(12_334_768)
     assert_instance_of Array, instance_2
     assert_instance_of Item, instance_2[0]
-    assert_equal 263_549_386, sa.most_sold_item_for_merchant(12_334_768)[0].id
+    assert_equal 263_549_386, sa.instance_2[0].id
   end
 
   def test_it_returns_all_most_sold_items_for_a_merchant_when_tied

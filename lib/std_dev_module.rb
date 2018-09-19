@@ -8,11 +8,6 @@ module StdDevModule
     end
   end
 
-  def average_items_invoices_per_merchant(repo)
-    (repo.all.count.to_f / @merchant_repo.all.count).round(2)
-  end
-
-  # Generate Needed Array
   def items_per_merchant_array(repo)
     @merchant_repo.all.map do |merchant|
       repo.all.find_all do |element|
@@ -43,14 +38,19 @@ module StdDevModule
       standard_deviation(set)
   end
 
-
-#stand_deviation (1)
   def standard_deviation(array)
-    # Expect Array of numbers
     average = sum(array)/array.count
     total = sum(array.map do |number|
       (average - number)**2
     end)
     Math.sqrt(total/(array.length-1))
+  end
+
+  def average_invoices_per_merchant_standard_deviation
+    per_merchant_standard_deviation(@invoice_repo)
+  end
+
+  def average_items_per_merchant_standard_deviation
+    per_merchant_standard_deviation(@item_repo)
   end
 end
